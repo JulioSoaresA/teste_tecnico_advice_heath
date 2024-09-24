@@ -12,6 +12,7 @@ services:
       - SQLALCHEMY_DATABASE_URI=mysql+pymysql://user:password@db:3306/todolistapp
     depends_on:
       - db
+      - db_test
     command: bash -c "flask db stamp head && flask db migrate && flask db upgrade && flask run --host=0.0.0.0"
     restart: always
 
@@ -28,5 +29,17 @@ services:
       - db_data:/var/lib/mysql
     restart: always
 
+  db_test:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: todolistapp_test  # Nome do banco de dados de teste
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - db_test_data:/var/lib/mysql
+    restart: always
+
 volumes:
   db_data:
+  db_test_data:

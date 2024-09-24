@@ -108,7 +108,7 @@ def create_car():
     color = request.form['color']
     
     # Criação do novo carro com o owner_id correto
-    new_car = Car(owner_id=owner.id, model=model, color=color)  # Ajuste aqui
+    new_car = Car(owner_id=owner.id, model=model, color=color)
     db.session.add(new_car)
     db.session.commit()
     
