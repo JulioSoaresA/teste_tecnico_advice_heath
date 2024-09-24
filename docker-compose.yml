@@ -13,6 +13,7 @@ services:
     depends_on:
       - db
     command: bash -c "flask db stamp head && flask db migrate && flask db upgrade && flask run --host=0.0.0.0"
+    restart: always
 
   db:
     image: mysql:8.0
@@ -25,6 +26,7 @@ services:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
+    restart: always
 
 volumes:
   db_data:
