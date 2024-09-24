@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}My Dashboard{% endblock %}
+
+{% block content %}
+<h2>My Cars</h2>
+<table class="table table-striped table-responsive table-bordered">
+    <thead>
+        <tr>
+            <th>Model</th>
+            <th>Color</th>
+            <th>Sell</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if cars %}
+        {% for car in cars %}
+        <tr>
+            <td>{{ car.model }}</td>
+            <td>{{ car.color }}</td>
+            <td>
+                <form method="POST" action="{{ url_for('delete_car', car_id=car.id) }}">
+                    <button type="submit" class="btn btn-danger">Vender</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+    </tbody>
+</table>
+{% endblock %}

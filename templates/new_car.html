@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}New Car{% endblock %}
+
+{% block content %}
+        <form method="post" action="{{ url_for('create_car') }}">
+            <fieldset>
+                <div class="form-group">
+                    <label for="color">Color</label>
+                    <select id="color" name="color" class="form-control" required>
+                        <option value="" disabled selected>Select a color</option>
+                        {% for value, name in colors %}
+                        <option value="{{ value }}">{{ name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="model">Model</label>
+                    <select id="model" name="model" class="form-control" required>
+                        <option value="" disabled selected>Select a model</option>
+                        {% for value, name in models %}
+                        <option value="{{ value }}">{{ name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-salvar mt-2">Salvar</button>
+            </fieldset>
+        </form>
+{% endblock %}
